@@ -31,13 +31,12 @@ feature_labels <- read.table("features.txt", stringsAsFactors = FALSE,col.names 
  These two files, activity_labels.txt and features.txt, include the names of the activities and the names of the measurement (feature) variables or vectors.  They are read first so their values can be used to name variables when the data is read in.
 
 ###Clean the variable names read 
- `feature_labels$feature_name  <- gsub("mean\\(\\)" ,"mean", feature_labels$feature_name)
+`feature_labels$feature_name  <- gsub("mean\\(\\)" ,"mean", feature_labels$feature_name)
 feature_labels$feature_name  <- gsub("std\\(\\)" ,"standard.dev", feature_labels$feature_name)
 feature_labels$feature_name  <- gsub("meanFreq\\(\\)" ,"Mean.frequency", feature_labels$feature_name)
 feature_labels$feature_name  <- gsub("-" ,"_", feature_labels$feature_name)
 feature_labels$feature_name  <- gsub("\\)" ,"", feature_labels$feature_name)
 feature_labels$feature_name  <- gsub("Mean\\)" ,"Mean", feature_labels$feature_name)
-
 feature_labels$feature_name <- make.names(feature_labels$feature_name, unique = TRUE)` 
 
 The variable or measurement identifiers in feature_labels are not valid variable names for R.  They include commas, dashes and parens.  In this section, the dashes are changed to underscores, the double parens () after function names are removed, single close parens are removed.  The variables that will be kept are cleaned up.  At the end, the make.names() function replaces the other illegal characters with periods and makes sure all of the variable names are unique.  This is part of Step 4 of the project.
@@ -60,15 +59,16 @@ total_data <- rbind(train_data, test_data) `
 The train and test data are created by appending the subject and activity vectors to the front of the large dataset of features.  Then the rows of observations from the test data are added to the bottom of the train data.  This completes Step 1 of the project.
 
 ###Change activity variable from numbers to activity names
-
- `for(j in 1:nrow(total_data)){
+`
+ for(j in 1:nrow(total_data)){
        
       for(i in 1:6){
             if(total_data$activity[j] ==activity_labels$activity_num[i]){
                   total_data$activity[j] <- activity_labels$activity_name[i]
             }
       }
-} `
+} 
+'
 
 This loop goes through each row of observations, finds the activity number, matches it to and activity name and changes the variable.  R automatically coerces the integer variable to a character variable.  This completes Step 3.
 
