@@ -59,16 +59,15 @@ total_data <- rbind(train_data, test_data) `
 The train and test data are created by appending the subject and activity vectors to the front of the large dataset of features.  Then the rows of observations from the test data are added to the bottom of the train data.  This completes Step 1 of the project.
 
 ###Change activity variable from numbers to activity names
-`
- for(j in 1:nrow(total_data)){
+
+`for(j in 1:nrow(total_data)){
        
       for(i in 1:6){
             if(total_data$activity[j] ==activity_labels$activity_num[i]){
                   total_data$activity[j] <- activity_labels$activity_name[i]
             }
       }
-} 
-'
+}`
 
 This loop goes through each row of observations, finds the activity number, matches it to and activity name and changes the variable.  R automatically coerces the integer variable to a character variable.  This completes Step 3.
 
