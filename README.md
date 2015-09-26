@@ -81,8 +81,9 @@ for(j in 1:nrow(total_data)){
 This loop goes through each row of observations, finds the activity number, matches it to and activity name and changes the variable.  R automatically coerces the integer variable to a character variable.  This completes Step 3.
 
 ###Select only variables that represent means and standard deviations
-
-` tidydata  <- select(total_data,c(subject_num, activity,contains("mean",ignore.case=FALSE), contains("standard.dev"),contains("Mean",ignore.case=FALSE))) `
+```
+tidydata  <- select(total_data,c(subject_num, activity,contains("mean",ignore.case=FALSE), contains("standard.dev"),contains("Mean",ignore.case=FALSE))) 
+```
 
 Using select(), the subject and activity variables are kept along with any variable with mean, Mean or standard.dev in the name.  Even though it is possible only the first set of mean() data was needed, I also included the meanFreq and angle mean data.  I placed these at the end, and in the codebook, I gave the columns numbers to aid in removal if these variables are not useful.  This completes Step 2.
 
